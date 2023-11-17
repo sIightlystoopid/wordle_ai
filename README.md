@@ -19,7 +19,7 @@ allowed_guesses.txt: A text file containing the allowed guesses in the Wordle ga
 
 -Ensure that the Wordle_Words.txt and allowed_guesses.txt files are present in the same directory. 
 
--You dont need both wordle_stats.py to run wordle.py, and vise versa. 
+-You don't need wordle_stats.py to run wordle.py, and vice versa. 
 
 ## How to Play
 1. Run the wordle.py program to start a game. The program will randomly select a word for the player to guess. This can be manually set by altering the value of 'the_word' in the code if, for instance, you wanted to input the wordle for the day. 
