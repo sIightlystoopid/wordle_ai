@@ -11,8 +11,11 @@ allowed_guesses.txt: A text file containing the allowed guesses in the Wordle ga
 
 ## Usage
 -To play the Wordle game, run wordle.py. 
+
 -To analyze the AI's performance, run wordle_stats.py. 
+
 -Ensure that the Wordle_Words.txt and allowed_guesses.txt files are present in the same directory. 
+
 -You dont need both wordle_stats.py to run wordle.py, and vise versa. 
 
 ## How to Play
