@@ -5,8 +5,11 @@ This project implements a simple Wordle game with an AI component. Wordle is a w
 
 ## Files
 wordle.py: The main program file containing the game logic and user interface for playing Wordle.
+
 wordle_stats.py: A companion program for statistical analysis of the AI's performance across all possible wordle words.
+
 Wordle_Words.txt: A text file containing the possible words that can be the Wordle answer.
+
 allowed_guesses.txt: A text file containing the allowed guesses in the Wordle game.
 
 ## Usage
