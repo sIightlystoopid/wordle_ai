@@ -77,7 +77,6 @@ def weights():
                     word_score -= scores[letter] / 1.5
 
         word_scores.update({w: word_score})
-    print(word1)
     max1 = max(word_scores, key=lambda key: word_scores[key])
     used_words.append(words_list[max1])
 
