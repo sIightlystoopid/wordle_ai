@@ -1,7 +1,7 @@
 # wordle_ai
 
 ## Overview
-This project implements a rudimentary Wordle game in the console along with an AI component. Wordle is a word-guessing game where the player attempts to guess a secret word within a limited number of attempts. In this implementation, an AI is included to make guesses based on feedback from previous attempts.
+This project implements a rudimentary Wordle game in the console along with an AI Wordle solver. Wordle is a word-guessing game where the player attempts to guess a secret word within a limited number of attempts. In this implementation, an AI is included to make guesses based on feedback from previous attempts.
 
 ## Files
 wordle.py: The main program file containing the game logic and user interface for playing Wordle.
