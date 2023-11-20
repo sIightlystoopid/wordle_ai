@@ -188,6 +188,11 @@ def check_guess(guess):
                     if g_char not in needed_words:
                         if g_char not in correct_words:
                             allowed[j].remove(g_char)
+                        else:
+                            for pos in allowed:
+                                if not(len(pos) == 1 and g_char in pos):
+                                    if g_char in pos:
+                                        pos.remove(g_char)
     print()
 
 avg_count = []
