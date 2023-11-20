@@ -13,7 +13,7 @@ ABSENT = 3
 
 allowed = [set() for _ in range(5)]  # Use list comprehension to initialize sets
 
-needed_words = set()
+needed_letters = set()
 words_list = []
 used_words = []
 
@@ -39,22 +39,23 @@ with open("allowed_guesses.txt") as wordle_guesses:
 
 the_word = random.choice(sorted_word_set)
 
-def is_possible(word, allowed, needed_words):
+
+def is_possible(word, allowed, needed_letters):
     for i in range(len(word)):
         if word[i] not in allowed[i]:
             return False
-        for m in needed_words:
+        for m in needed_letters:
             if m not in word:
                 return False
         if word[i] in used_words:
             return False
     return True
 
-def possible_words(sorted_word_set, allowed, needed_words):
+def possible_words(sorted_word_set, allowed, needed_letters):
     global words_list
     words_list.clear()
-    words_list.extend(word for word in sorted_word_set if is_possible(word, allowed, needed_words))
-    return [word for word in sorted_word_set if is_possible(word, allowed, needed_words)]
+    words_list.extend(word for word in sorted_word_set if is_possible(word, allowed, needed_letters))
+    return [word for word in sorted_word_set if is_possible(word, allowed, needed_letters)]
 
 def weights():
     global used_words
@@ -77,14 +78,13 @@ def weights():
                     word_score -= scores[letter] / 1.5
 
         word_scores.update({w: word_score})
+    
     max1 = max(word_scores, key=lambda key: word_scores[key])
     used_words.append(words_list[max1])
 
     if words_list[max1] in used_words:
         word_scores.update({max1: 0})
 
-    scores.clear()
-    word_scores.clear()
     return words_list[max1]
 
 def AI_guess(guess):
@@ -92,7 +92,7 @@ def AI_guess(guess):
     if word_counter == 0:
         guess = 'slate'
     else:
-        possible_words(sorted_word_set, allowed, needed_words)
+        possible_words(sorted_word_set, allowed, needed_letters)
         guess = weights()
 
     return guess
@@ -161,10 +161,10 @@ def wordle_digits_from_guess(secret_word, guess):
     return result
 
 def check_guess(guess):
-    global needed_words
+    global needed_letters
     global the_word
     global allowed
-    correct_words = []
+    correct_letters = []
 
     feedback = wordle_digits_from_guess(the_word, guess)
 
@@ -175,12 +175,12 @@ def check_guess(guess):
             print(BG_GREEN + g_char + RESET, end=" ")
             allowed[i] = {g_char}
 
-            if g_char not in correct_words:
-                correct_words.append(g_char)
+            if g_char not in correct_letters:
+                correct_letters.append(g_char)
 
         if status == PRESENT:
             print(BG_YELLOW + g_char + RESET, end=" ")
-            needed_words.add(g_char)
+            needed_letters.add(g_char)
 
             if g_char in allowed[i]:
                 allowed[i].remove(g_char)
@@ -189,10 +189,15 @@ def check_guess(guess):
             print(g_char, end=" ")
             for j in range(len(guess)):
                 if g_char in allowed[j]:
-                    if g_char not in needed_words:
-                        if g_char not in correct_words:
+                    if g_char not in needed_letters:
+                        if g_char not in correct_letters:
                             allowed[j].remove(g_char)
-
+                        else:
+                            for pos in allowed:
+                                if not(len(pos) == 1 and g_char in pos):
+                                    if g_char in pos:
+                                        pos.remove(g_char)
+                                   
     print()
 
 def main_loop():
