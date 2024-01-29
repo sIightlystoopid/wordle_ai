@@ -57,7 +57,7 @@ def possible_words(sorted_word_set, allowed, needed_letters):
     words_list.extend(word for word in sorted_word_set if is_possible(word, allowed, needed_letters))
     return [word for word in sorted_word_set if is_possible(word, allowed, needed_letters)]
 
-def weights():
+def weights(words_list):
     global used_words
     scores = {letter: 0 for letter in "abcdefghijklmnopqrstuvwxyz"}
     word_scores = {}
@@ -97,7 +97,7 @@ def AI_guess(guess):
         guess = 'slate'
     else:
         possible_words(sorted_word_set, allowed, needed_letters)
-        guess = weights()
+        guess = weights(words_list)
 
     return guess
 
