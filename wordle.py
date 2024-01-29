@@ -73,12 +73,12 @@ def weights():
             word_score += scores[letter]
             word1.append(letter)
 
-            if word1.count(letter) == 1:
+            if word1.count(letter) == 2:
                 for letter in word1:
-                    word_score -= scores[letter] / 1.4
-            elif word1.count(letter) > 1:
+                    word_score -= scores[letter] / 1.5 
+            elif word1.count(letter) > 2:
                 for letter in word1:
-                    word_score -= scores[letter] / 2
+                    word_score -= scores[letter] / 1.25
             else:
                 continue
         word_scores.update({w: word_score})
